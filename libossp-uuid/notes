@@ -1,0 +1,10 @@
+# Required Libraries not yet available
+- libuuid
+- libfreedrp
+- libpango
+- libssh2
+- libtelnet
+- libvncserver
+- pulseaudio
+- libvorbis
+- libwebp

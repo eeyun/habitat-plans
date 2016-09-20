@@ -1,0 +1,12 @@
+<user-mapping>
+  <authorize username="{{cfg.sshd.username}}" password="{{cfg.sshd.password}}">
+    <connection name="{{sys.hostname}}">
+    <protocol>ssh</protocol>
+    <param name="hostname">{{sys.ip}}</param>
+    <param name="port">22</param>
+    <param name="username">{{cfg.guacd.username}}</param>
+    <param name="password">{{cfg.guacd.password}}</param>
+    <param name="enable-sftp">true</param>
+    </connection>
+  </authorize>
+</user-mapping>

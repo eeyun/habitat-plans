@@ -1,0 +1,13 @@
+#!/bin/bash
+
+exec 2>&1
+
+export JAVA_HOME=$(hab pkg path core/jdk8)
+export TOMCAT_HOME="{{pkg.svc_var_path}}/tc"
+export CATALINA_OPTS="{{cfg.server.catalina-opts}}"
+export GUACAMOLE_HOME="{{pkg.svc_path}}/config"
+export GUACAMOLE_PROPERTIES="$GUACAMOLE_HOME/guacamole.properties"
+
+exec {{pkg.svc_path}}/bin/guacd start &
+
+exec chpst -u hab:hab ${TOMCAT_HOME}/bin/catalina.sh run

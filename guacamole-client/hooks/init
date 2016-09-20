@@ -1,0 +1,21 @@
+#!/bin/bash
+# Move directories that ship in the package into place
+cp -a $(hab pkg path core/tomcat8)/tc {{pkg.svc_var_path}}/
+
+# Move guacd bin into svc_path
+mkdir {{pkg.svc_path}}/bin
+cp $(hab pkg path odin/guacamole-server)/sbin/guacd {{pkg.svc_path}}/bin
+
+# Symlink config files into $TOMCAT_HOME/conf
+for file in $(cd {{pkg.svc_config_path}}; ls -1)
+do
+  echo "Linking $file"
+  target="${file//_//}"
+  ln -vsf {{pkg.svc_config_path}}/$file {{pkg.svc_var_path}}/tc/$target
+done
+
+
+chown -R hab:hab {{pkg.svc_path}}/*
+
+echo "Copying 'guacamole-{{pkg.version}}.war' to {{pkg.svc_var_path}}/tc/webapps"
+cp {{pkg.path}}/guacamole-{{pkg.version}}.war {{pkg.svc_var_path}}/tc/webapps/guacamole.war

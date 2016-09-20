@@ -1,0 +1,7 @@
+#!/bin/bash
+# Move directories that ship in the package into place
+
+echo "Linking guacd to {{pkg.svc_var_path}}"
+ln -sf {{pkg.path}}/sbin/guacd {{pkg.svc_var_path}}
+
+chown -R hab:hab {{pkg.svc_path}}/*
