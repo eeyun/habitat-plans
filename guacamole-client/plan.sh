@@ -24,7 +24,7 @@ pkg_build_deps=(
 pkg_bin_dirs=(bin)
 pkg_lib_dirs=(lib)
 pkg_include_dirs=(include)
-pkg_expose=(8080)
+pkg_exposes=(8080)
 
 pkg_svc_user="root"
 pkg_svc_group="root"
