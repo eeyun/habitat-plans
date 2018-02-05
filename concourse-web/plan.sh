@@ -6,6 +6,8 @@ pkg_license=('Apache-2.0')
 pkg_description="CI that scales with your project"
 pkg_upstream_url="https://concourse.ci"
 pkg_deps=(core/concourse core/postgresql)
+pkg_svc_group="root"
+pkg_svc_user="root"
 pkg_exports=(
    [web_port]=ports.web
 )

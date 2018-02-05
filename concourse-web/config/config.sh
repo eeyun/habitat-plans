@@ -2,7 +2,11 @@
 
 export CONCOURSE_BASIC_AUTH_USERNAME="{{cfg.concourse.username}}"
 export CONCOURSE_BASIC_AUTH_PASSWORD="{{cfg.concourse.password}}"
-export CONCOURSE_EXTERNAL_URL="${CONCOURSE_EXTERNAL_URL}"
+{{#if cfg.concourse.external_url}}
+export CONCOURSE_EXTERNAL_URL="{{cfg.concourse.external_url}}"
+{{else ~}}
+export CONCOURSE_EXTERNAL_URL="{{svc.me.ip}}"
+{{/if ~}}
 
 {{#if bind.database ~}}
 {{#with bind.database.first as |pg| }}
